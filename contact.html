@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="navbar">
+    <ul class="ul_navbar">
+        <li class="li_navbar"><a href="index.html">Home</a></li>
+        <li class="li_navbar"><a href="about.html">About</a></li>
+        <li class="li_navbar"><a href="gallery.html">Gallery</a></li>
+        <li class="li_navbar"><a href="showcase.html">Showcase</a></li>
+        <li class="li_navbar"><a class="active" href="contact.html">Contact</a></li>
+    </ul>
+    <div class="A">
+        <div class="L">
+            <img src="unnamed.jpeg" alt="mysterydog" class="image">
+            <h2>Mystery Dog</h2>
+            <p><a href="https://www.youtube.com">Website:www.youtube.com</a></p>
+            <p>Email:a123456789@gmail.com</p>
+        </div>
+        <div class="R">
+            <h2>canva</h2>
+            
+            <canvas id="dreamCanvas" width="600" height="400">
+            </canvas>
+
+            <script>
+                const canvas = document.getElementById('dreamCanvas');
+                const ctx = canvas.getContext('2d');
+                const width = canvas.width;
+                const height = canvas.height;
+
+                const centerX = 370;
+                const centerY = 175;
+                const radiusY = 40; 
+                const radiusX = 55; 
+                const scaleFactorX = radiusX / radiusY;
+                const rotationAngle = 60;
+
+                function drawGradientBackground() {
+                    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                    gradient.addColorStop(0, '#1a0033'); 
+                    gradient.addColorStop(0.6, '#4d0080'); 
+                    gradient.addColorStop(1, '#000033'); 
+
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, width, height);
+                }
+
+                function drawPlanet() {
+                    ctx.beginPath();
+                    ctx.arc(300, 170, 150, 0, Math.PI * 2); 
+                    ctx.fillStyle = '#ffcc00'; 
+                    ctx.shadowColor = 'rgba(255, 255, 0, 0.8)';
+                    ctx.shadowBlur = 15;
+                    ctx.fill();
+                    ctx.shadowBlur = 0; 
+                }
+
+                function drawStructure() {
+                    ctx.beginPath();
+                    ctx.moveTo(320, 159)
+                    ctx.lineTo(329, 164)
+                    ctx.lineTo(321, 167)
+                    ctx.fillStyle = '#000';
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(325, 167, 3, 20, Math.PI); 
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.arc(320, 163, 3, 100, Math.PI); 
+                    ctx.stroke();
+
+                }
+
+                function drawRainbowArc() {
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate(60);
+                    ctx.scale(scaleFactorX, 1); 
+
+                    ctx.beginPath();
+                    ctx.arc(0, 0, radiusY, 0, Math.PI * 2, false); 
+
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+
+                    ctx.restore();
+
+                    ctx.beginPath();
+                    ctx.arc(350,155,5,0,Math.PI*2);
+                    ctx.fillStyle = 'black';
+                    ctx.fill();
+
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate(100);
+                    ctx.scale(scaleFactorX, 0.25); 
+
+                    ctx.beginPath();
+                    ctx.arc(25, -150, 20, 0, Math.PI * 2, false); 
+
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+
+                    ctx.restore();
+
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate(80);
+                    ctx.scale(scaleFactorX, 0.25); 
+
+                    ctx.beginPath();
+                    ctx.arc(30, 0, 20, 0, Math.PI * 2, false); 
+
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+
+                    ctx.restore();
+                }
+
+                function drawTitle() {
+                    ctx.fillStyle = 'white';
+                    ctx.font = '24px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText("中秋節", 150, 50); 
+                }
+
+                function drawStars() {
+                    ctx.fillStyle = 'white';
+                    for (let i = 0; i < 50; i++) {
+                        const x = Math.random() * width;
+                        const y = Math.random() * height * 0.7; 
+                        const radius = Math.random() * 2; 
+                        
+                        ctx.beginPath();
+                        ctx.arc(x, y, radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                function drawDreamSpace() {
+                    drawGradientBackground(); 
+                    drawStars();              
+                    drawPlanet();             
+                    drawRainbowArc();         
+                    drawStructure();          
+                    drawTitle();              
+                }
+
+                drawDreamSpace();
+
+            </script>
+        </div>
+    </div>
+    
+</body>
+</html>
